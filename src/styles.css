@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+mat-toolbar .mat-icon.mat-icon-logo {
+  height: auto;
+  width: 50px;
+  margin-top: 10px;
+}
+
+.will-load {
+    min-height: 80px;
+}
+a[md-icon-button] {
+    line-height: 36px;
+}
+
+.text-capital {
+  text-transform: capitalize;
+}
+
+td-layout-manage-list .mat-toolbar {
+    font-weight: 400;
+}

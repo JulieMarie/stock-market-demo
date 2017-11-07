@@ -1,20 +1,87 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-  <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<td-layout-nav logo="assets:stock-market" toolbarTitle="Stock Market Demo" navigationRoute="/">
+  <div layout-gt-sm="row" tdMediaToggle="gt-xs" [mediaClasses]="['push-sm']">
+    <div flex-gt-sm="60">
+      <mat-card>
+        <mat-card-title>Today's Markets</mat-card-title>
+        <mat-card-subtitle class="tc-orange-800">exclusive market analysis</mat-card-subtitle>
+        <mat-divider></mat-divider>
+        <div class="chart-height push-top push-right-sm">
+          <ngx-charts-line-chart
+            [scheme]="orangeColorScheme"
+            [results]="multi"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [legend]="showLegend"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            [autoScale]="autoScale"
+            [yAxisTickFormatting]="axisDigits">
+          </ngx-charts-line-chart>
+        </div>
+      </mat-card>
+      <div layout="row">
+        <div flex="33" layout="column">
+          <mat-card class="mat-card-colored" flex>
+            <mat-card-content class="text-center">
+              <div class="mat-headline">174.25 USD</div>
+              <div class="mat-subhead tc-green-500 "><mat-icon class="tc-green-500 text-sm">arrow_upward</mat-icon>1.75 (1.01%)</div>
+              <mat-icon svgIcon="assets:apple"></mat-icon>
+              <div layout="column">
+                <div class="mat-subhead">Apple Inc.</div>
+                <div class="mat-subhead">(NASDAQ: AAPL)</div>
+                <div class="mat-caption tc-grey-600">at closing</div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div flex="33" layout="column">
+          <mat-card class="mat-card-colored" flex>
+            <mat-card-content class="text-center">
+              <div class="mat-headline">1,120.60 USD</div>
+              <div class="mat-subhead tc-green-500 "><mat-icon class="tc-green-500 text-sm">arrow_upward</mat-icon>9.06 (0.82%)</div>
+              <mat-icon svgIcon="assets:amazon"></mat-icon>
+              <div layout="column">
+                <div class="mat-subhead">Amazon.com Inc.</div>
+                <div class="mat-subeahd">(NASDAQ: AMZN)</div>
+                <div class="mat-caption tc-grey-600">at closing</div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div flex="33" layout="column">
+          <mat-card class="mat-card-colored" flex>
+            <mat-card-content class="text-center">
+              <div class="mat-headline">35.53 USD</div>
+              <div class="mat-subhead tc-red-500 "><mat-icon class="tc-red-500 text-sm">arrow_downward</mat-icon>0.56 (1.55%)</div>
+              <mat-icon svgIcon="assets:teradata"></mat-icon>
+              <div layout="column">
+                <div class="mat-subhead">Teradata Corporation</div>
+                <div class="mat-subhead">(NYSE: TDC)</div>
+                <div class="mat-caption tc-grey-600">at closing</div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+    <div flex-gt-sm="40">
+      <mat-card>
+        <mat-card-title>Market News</mat-card-title>
+        <mat-card-subtitle class="tc-orange-800">top stories</mat-card-subtitle>
+        <mat-divider></mat-divider>
+        <mat-list class="will-load news-list">
+          <ng-template let-item let-last="last" ngFor [ngForOf]="news">
+            <mat-list-item layout-align="row">
+              <h3 mat-line> {{item.headline}} </h3>
+              <p mat-line class="tc-orange-800"> {{item.author}} </p>
+              <p mat-line> {{item.created}} </p>
+            </mat-list-item>
+          </ng-template>
+        </mat-list>
+      </mat-card>
+    </div>
+  </div>
+</td-layout-nav>
