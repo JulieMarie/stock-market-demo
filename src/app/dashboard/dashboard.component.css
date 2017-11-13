@@ -1,9 +1,5 @@
 .chart-height {
-height: 400px;
-}
-mat-icon {
-  width: auto;
-  height: 50px;
+  height: 300px;
 }
 mat-icon.text-sm.material-icons {
   height: auto;
