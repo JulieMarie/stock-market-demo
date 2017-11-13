@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
-import { FormComponent } from './form/form.component';
 
 const routes: Routes = [
     {
@@ -18,10 +17,6 @@ const routes: Routes = [
             {
                 component: DashboardComponent,
                 path: '',
-            },
-            {
-                path: 'form',
-                component: FormComponent
             },
             { path: '', loadChildren: './news/news.module#NewsModule' }
         ],
@@ -40,6 +35,5 @@ export class AppRoutingModule { }
 export const routedComponents: any[] = [
     MainComponent, 
     LoginComponent,
-    DashboardComponent,
-    FormComponent
+    DashboardComponent
 ];
