@@ -1,0 +1,61 @@
+<td-layout-nav logo="assets:stock-market" navigationRoute="/">
+  <button mat-icon-button td-menu-button tdLayoutToggle>
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div td-toolbar-content layout="row" layout-align="center center" flex>
+    <span>Stock Market Demo</span>
+    <span flex></span>
+    <a mat-icon-button matTooltip="Github" href="https://github.com/JulieMarie" target="_blank"><mat-icon svgIcon="assets:github"></mat-icon></a>
+  </div>
+  <td-layout-manage-list [opened]="false" [mode]="'side'">
+    <mat-toolbar>
+      <div td-toolbar-content layout="row" layout-align="start center" flex>
+        <span>All News</span>
+        <span flex></span>
+        <button mat-icon-button><mat-icon class="mat-24">view_module</mat-icon></button>
+        <button mat-icon-button><mat-icon class="mat-24">sort</mat-icon></button>
+        <button mat-icon-button><mat-icon class="mat-24">settings</mat-icon></button>
+        <button mat-icon-button><mat-icon class="mat-24">more_vert</mat-icon></button>
+      </div>
+    </mat-toolbar>
+    <mat-card class="push-bottom-xxl" tdMediaToggle="gt-xs" [mediaClasses]="['push']">
+      <td-search-box class="push-left push-right" placeholder="search" [alwaysVisible]="true" (searchDebounce)="filterNews($event)"></td-search-box>
+      <mat-divider></mat-divider>
+      <mat-list class="will-load news-list">
+        <div class="mat-padding" *ngIf="filteredNews?.length === 0" layout="row" layout-align="center center">
+          <h3>No news to display.</h3>
+        </div>
+        <ng-template let-article let-last="last" ngFor [ngForOf]="filteredNews">
+          <mat-list-item>
+            <mat-icon mat-list-avatar>person</mat-icon>
+            <h3 mat-line> {{article.headline}} </h3>
+            <p mat-line class="tc-orange-800"> {{article.author}} </p>
+            <h4 mat-line> {{article.story}} </h4>
+            <p mat-line hide-gt-md class="mat-caption"> posted: {{ article.posted | date }} </p>
+            <span flex></span>
+            <span hide-xs hide-sm hide-md flex-gt-xs="60" flex-xs="40" layout-gt-xs="row">
+                <div class="mat-caption tc-grey-500" flex-gt-xs="30"> {{ article.posted | date }} </div>
+            </span>
+            <span>
+                <button mat-icon-button [mat-menu-trigger-for]="menu">
+                <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu x-position="before" #menu="matMenu">
+                  <a [routerLink]="[article.id, 'edit']" mat-menu-item>
+                    <mat-icon>edit</mat-icon> Edit
+                  </a>
+                  <button mat-menu-item (click)="delete(article.id)">
+                    <mat-icon>delete</mat-icon> Delete
+                  </button>
+                </mat-menu>
+            </span>
+          </mat-list-item>
+          <mat-divider *ngIf="!last" mat-inset></mat-divider>
+        </ng-template>
+      </mat-list>
+    </mat-card>
+  </td-layout-manage-list>   
+</td-layout-nav>
+<a mat-fab color="accent" class="mat-fab-bottom-right" [routerLink]="['add']">
+  <mat-icon>add</mat-icon>
+</a>

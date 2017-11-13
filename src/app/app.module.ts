@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule, } from '@angular/flex-layout';
+import { routedComponents, AppRoutingModule } from './app-routing.module';
 
 import {
   CovalentDataTableModule, CovalentMediaModule, CovalentLoadingModule,
@@ -44,7 +45,7 @@ const COVALENT_MODULES: any[] = [
   CovalentNotificationsModule, CovalentLayoutModule, CovalentMenuModule,
   CovalentPagingModule, CovalentSearchModule, CovalentStepsModule,
   CovalentCommonModule, CovalentDialogsModule, CovalentHighlightModule,
-  CovalentMarkdownModule, CovalentDynamicFormsModule
+  CovalentMarkdownModule, CovalentDynamicFormsModule,
 ];
 
 const CHART_MODULES: any[] = [
@@ -53,9 +54,11 @@ const CHART_MODULES: any[] = [
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    routedComponents
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     HttpModule,
     BrowserAnimationsModule,
